@@ -5,10 +5,27 @@
  */
 package DAO;
 
+import Entidades.Editora;
+
 /**
  *
  * @author SOSTECH
  */
 public class EditoraDAO {
+    
+    Editora editora = new Editora();
+    
+    public void CadastrarEditora(Editora editora){
+        
+    }
+    public void DeletarEditora(Editora editora){
+        
+    }
+    public void SelecionarEditora(Editora editora){
+        
+    }
+    public void AlterarEditora(Editora editora, Editora newEditora){
+        
+    }
     
 }

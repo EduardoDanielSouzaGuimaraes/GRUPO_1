@@ -5,10 +5,26 @@
  */
 package DAO;
 
+import Entidades.Livro;
+
 /**
  *
  * @author SOSTECH
  */
 public class LivroDAO {
     
+    Livro livro = new Livro();
+    
+    public void CadastrarLivro(Livro livro){
+        
+    }
+    public void DeletarLivro(Livro livro){
+        
+    }
+    public void SelecionarLivro(Livro livro){
+        
+    }
+    public void AlterarLivro(Livro livro, Livro newLivro){
+        
+    }
 }
