@@ -8,6 +8,7 @@ package DAO;
 import Entidades.Editora;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class EditoraDAO {
     
-    Editora editora = new Editora();
+    
     private Connection conexao;
     
     public void CadastrarEditora(Editora editora){
@@ -39,8 +40,27 @@ public class EditoraDAO {
     public void DeletarEditora(Editora editora){
         
     }
-    public void SelecionarEditora(Editora editora){
-        
+    public Editora SelecionarEditora(int idEditora){
+        String sql = "select * from editora where Cod_Editora = ?";
+        Editora editora = new Editora();
+        try {
+            PreparedStatement seleciona = this.conexao.prepareStatement(sql);
+            seleciona.setInt(1, idEditora);
+            ResultSet dados = seleciona.executeQuery();
+            dados.next();
+            editora.setNome(dados.getString("NomeEditora"));
+            editora.setEmail(dados.getString("Email"));
+            editora.setId(dados.getInt("Cod_Editora"));
+            editora.setTelefone(dados.getString("Telefone"));
+            editora.setEndereco(dados.getString("Endereco"));
+            
+            return editora;
+           
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro: Impossivel Selecionar Editora.");
+            return null;
+        }
     }
     public void AlterarEditora(Editora editora, Editora newEditora){
         

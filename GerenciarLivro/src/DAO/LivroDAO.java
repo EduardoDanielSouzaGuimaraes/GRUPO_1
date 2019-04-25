@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class LivroDAO {
     
-    Livro livro = new Livro();
+   
     private Connection conexao;
     
     public void CadastrarLivro(Livro livro){
@@ -44,18 +44,31 @@ public class LivroDAO {
     public void DeletarLivro(Livro livro){
         
     }
-    public void SelecionarLivro(Livro livro){
-        
+    public Livro SelecionarLivro(int idlivro){
+         Livro livro = new Livro();
+         AutorDAO autorDao = new AutorDAO();
+         EditoraDAO editoraDao = new EditoraDAO();
         String sql = "select * from livro where Cod_Livro = ?";
 
         try {
             PreparedStatement seleciona = this.conexao.prepareStatement(sql);
-            seleciona.setInt(1, 0);
+            seleciona.setInt(1, idlivro);
             ResultSet dados = seleciona.executeQuery();
-           
+            dados.next();
+            livro.setAutor(autorDao.SelecionarAutor(dados.getInt("autor_COD_Autor")));
+            livro.setEditora(editoraDao.SelecionarEditora(dados.getInt("editora_COD_Editora")));
+            livro.setGenero(dados.getString("genero"));
+            livro.setId(dados.getInt("Cod_Livro"));
+            livro.setIdioma(dados.getString("idioma"));
+            livro.setNomeoriginal(dados.getString("NomeOriginal"));
+            livro.setNumeroexemplar(dados.getInt("numeroExemplar"));
+            livro.setPublicacao(dados.getString("Dt_publicacao"));
+            livro.setTitulo(dados.getString("titulo"));
+            return livro;
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro: Impossivel Selecionar.");
+            return null;
         }
         
     }

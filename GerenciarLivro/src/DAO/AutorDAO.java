@@ -8,6 +8,7 @@ package DAO;
 import Entidades.Autor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class AutorDAO {
     
-    Autor autor = new Autor();
+    
     private Connection conexao;
     
     public AutorDAO() {
@@ -42,7 +43,26 @@ public class AutorDAO {
     public void DeletarAutor(Autor autor){
         
     }
-    public void SelecionarAutor(Autor autor){
+    public Autor SelecionarAutor(int idAutor){
+        
+        String sql = "select * from autor where Cod_Autor = ?";
+        Autor autor = new Autor();
+        try {
+            PreparedStatement seleciona = this.conexao.prepareStatement(sql);
+            seleciona.setInt(1, idAutor);
+            ResultSet dados = seleciona.executeQuery();
+            dados.next();
+            autor.setNome(dados.getString("nomeAutor"));
+            autor.setDatanasc(dados.getString("Dt_Nasc"));
+            autor.setId(dados.getInt("Cod_Autor"));
+            
+            return autor;
+           
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro: Impossivel Selecionar Autor.");
+            return null;
+        }
         
     }
     public void AlterarAutor(Autor autor, Autor newAutor){
