@@ -31,8 +31,8 @@ public class AutorDAO {
         
         try {
             PreparedStatement insere = this.conexao.prepareStatement(sql);
-            insere.setString(1,null);
-            insere.setString(2,null);
+            insere.setString(1,autor.getNome());
+            insere.setString(2,autor.getDatanasc());
             insere.execute();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Erro:Impossivel Inserir informações do Autor no banco de dados!\n" + ex);

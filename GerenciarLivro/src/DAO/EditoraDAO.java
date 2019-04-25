@@ -26,10 +26,10 @@ public class EditoraDAO {
         
         try {
             PreparedStatement insere = this.conexao.prepareStatement(sql);
-            insere.setString(1,null);
-            insere.setString(2,null);
-            insere.setString(3,null);
-            insere.setString(4,null);
+            insere.setString(1,editora.getNome());
+            insere.setString(2,editora.getTelefone());
+            insere.setString(3,editora.getEndereco());
+            insere.setString(4,editora.getEmail());
             insere.execute();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Erro:Impossivel Inserir informações da Editora no banco de dados!\n" + ex);

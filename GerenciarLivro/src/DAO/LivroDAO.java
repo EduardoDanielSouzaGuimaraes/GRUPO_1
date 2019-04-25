@@ -27,14 +27,14 @@ public class LivroDAO {
         
         try {
             PreparedStatement insere = this.conexao.prepareStatement(sql);
-            insere.setString(1,null);
-            insere.setString(2,null);
-            insere.setString(3,null);
-            insere.setString(4,null);
-            insere.setInt(5,0);
-            insere.setString(6,null);
-            insere.setInt(7,0);
-            insere.setInt(8,0);
+            insere.setString(1,livro.getTitulo());
+            insere.setString(2,livro.getPublicacao());
+            insere.setString(3,livro.getGenero());
+            insere.setString(4,livro.getNomeoriginal());
+            insere.setInt(5,livro.getNumeroexemplar());
+            insere.setString(6,livro.getIdioma());
+            insere.setInt(7,livro.getAutor().getId());
+            insere.setInt(8,livro.getEditora().getId());
             insere.execute();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Erro:Impossivel Inserir informações da Editora no banco de dados!\n" + ex);
