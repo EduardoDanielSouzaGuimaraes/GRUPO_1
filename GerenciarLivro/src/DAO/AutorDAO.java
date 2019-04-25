@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Conexao.conexao;
 import Entidades.Autor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +23,7 @@ public class AutorDAO {
     private Connection conexao;
     
     public AutorDAO() {
-        //this.conexao = new Conexao().getConnection();
+        this.conexao = new conexao().getConnection();
 
     }
     
