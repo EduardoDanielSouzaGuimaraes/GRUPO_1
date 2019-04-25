@@ -6,6 +6,10 @@
 package DAO;
 
 import Entidades.Autor;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,8 +18,25 @@ import Entidades.Autor;
 public class AutorDAO {
     
     Autor autor = new Autor();
+    private Connection conexao;
+    
+    public AutorDAO() {
+        //this.conexao = new Conexao().getConnection();
+
+    }
     
     public void CadastrarAutor(Autor autor){
+        
+         String sql = "insert into autor(NomeAutor,Dt_Nasc) values (?,?)";
+        
+        try {
+            PreparedStatement insere = this.conexao.prepareStatement(sql);
+            insere.setString(1,null);
+            insere.setString(2,null);
+            insere.execute();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro:Impossivel Inserir informações do Autor no banco de dados!\n" + ex);
+        }
         
     }
     public void DeletarAutor(Autor autor){
